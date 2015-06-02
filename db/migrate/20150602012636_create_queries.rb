@@ -9,6 +9,6 @@ class CreateQueries < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :querires, :participations
+    add_foreign_key :queries, :participations
   end
 end
