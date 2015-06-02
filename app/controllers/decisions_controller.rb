@@ -10,11 +10,16 @@ class DecisionsController < ApplicationController
   end
 
   def show
-    @decision = Decision.find(params[:id]).decisions
+    @decision = Decision.find(params[:id])
     # @participations = @decision.participations
-    @proposal = @decision.proposals.where(status: open)
-    @proposal_participations = @proposal.ordered_participations
-    @current_voter = @proposal.ordered_participations[0]
+    @current_proposal = @decision.proposals.where(status: "open")[0]
+    @current_voter = @current_proposal.current_voter
+    @on_deck =@current_proposal.not_yet_voted_minus_current_voter
+    @already_voted = @current_proposal.already_voted_participations
+
+
+
+    # @current_voter = @decision_participants[0]
   end
 
   def new

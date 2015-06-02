@@ -1,5 +1,10 @@
-<h1>LET'S <%= @decision.context %> ... <%= @proposal.proposed_idea %></h1>
+<h1>LET'S <%= @decision.context %> ... <%= @current_proposal.proposed_idea %></h1>
+
+  <%= @current_proposal.current_voter.user.name %>
+  <!--  -->
 
 <ul>
-  <%= render @proposal_participations %>
+  <em><%= render partial: 'participant', collection: @on_deck %></em>
+
+  <%= render partial: 'participant', collection: @already_voted %>
 </ul>
