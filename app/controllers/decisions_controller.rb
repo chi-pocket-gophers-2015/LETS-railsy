@@ -9,6 +9,7 @@ class DecisionsController < ApplicationController
     # @participations = @decision.participations
     @proposal = @decision.proposals.where(status: open)
     @proposal_participations = @proposal.ordered_participations
+    @current_voter = @proposal.ordered_participations[0]
   end
 
   # def activeproposal

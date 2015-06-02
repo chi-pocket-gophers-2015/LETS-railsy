@@ -14,16 +14,16 @@ class Proposal < ActiveRecord::Base
     @_participations ||= self.decision.participations
   end
 
-  def voters
-    @_voters ||= self.queries.pluck(:participation_id).sort.map {|id| Participation.find(id)}
+  def already_voted
+    @_already_voted ||= self.queries.pluck(:participation_id).sort.map {|id| Participation.find(id)}
   end
 
   def not_yet_voted
-    @_not_yet_voted ||= (participations - voters).sort
+    @_not_yet_voted ||= (participations - already_voted).sort
   end
 
   def ordered_participations
-    @_ordered_participations ||= not_yet_voted + voters
+    @_ordered_participations ||= not_yet_voted + already_voted
   end
 
   def next_voter
