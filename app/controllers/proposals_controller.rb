@@ -23,4 +23,9 @@ class ProposalsController < ApplicationController
   def set_current_participation
     @current_participation ||= Participation.find_by(user: current_user, decision: @decision)
   end
+
+  # def email_current_voter
+  #   UserMailer.notify_of_turn_to_vote(next_participation).deliver
+  # end
+
 end
