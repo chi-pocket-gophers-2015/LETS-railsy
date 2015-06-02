@@ -5,9 +5,11 @@
   <%= @current_proposal.current_voter.user.name %>
 
 <div>
-  <p></p>
+  <%= button_to "Sounds Good" %>
+  <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
+  <%= button_to "Somewhere Else" %>
 </div>
-  <!--  -->
+
 <p><em>On Deck:</em></p>
 <ul>
   <%= render partial: 'participant', collection: @on_deck %>
