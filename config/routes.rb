@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :decisions, only: [:new, :create, :show]  do
+      resources :participations, only: [:new, :create]
       resources :proposals, only: [:new, :create] do
         resources :queries, only: [:create]
       end

@@ -1,7 +1,7 @@
-user1 = User.create(name:"Candice",email:"c@c.cc",password:"password", phone_number:"999949999")
-user2 = User.create(name:"Shannon",email:"s@s.ss",password:"password", phone_number:"999993999")
-user3 = User.create(name:"Natty",email:"n@n.nn",password:"password", phone_number:"999999929")
-user4 = User.create(name:"Logan",email:"l@l.ll",password:"password", phone_number:"999991999")
+user1 = User.create!(name:"Candice",email:"c@c.cc",password:"password", phone_number:"999949999")
+user2 = User.create!(name:"Shannon",email:"s@s.ss",password:"password", phone_number:"999993999")
+user3 = User.create!(name:"Natty",email:"n@n.nn",password:"password", phone_number:"999999929")
+user4 = User.create!(name:"Logan",email:"l@l.ll",password:"password", phone_number:"999991999")
 
 
 user1.decisions.create!(context:"have dinner tonight!")

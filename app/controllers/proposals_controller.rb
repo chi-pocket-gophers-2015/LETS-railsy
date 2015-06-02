@@ -2,19 +2,23 @@ class ProposalsController < ApplicationController
 
   WAIT_TIME = 15 * 60
 
+  def new
+    @decision = Decision.find(params[:decision_id])
+  end
+
 
   def create
-    prop = Proposal.new(status: 'open', proposed_idea: params[:proposed_idea], participation_id: params[:participation_id])
-
-    user = User.find_by(id: params[:id])
-
+    @decision = Decision.find(params[:decision_id])
+    participation = Participation.find_by(user: current_user, decision: @decision)
+    prop = Proposal.new(proposed_idea: params[:proposal][:proposed_idea], participation: participation)
     if prop.save
-      Query.create(participation_id: params[:participation_id], status: "yes", respond_by: Time.now + WAIT_TIME)
+      prop.queries.create(participation: participation, status: "yes", respond_by: Time.now + WAIT_TIME, responded_at: Time.now)
       ## render...
     else
-      ## raise error
-      ## redirect
+      # create an error to be displayed on the
+      redirect_to new_decision_proposal_path(@decision)
     end
+    redirect_to decision_path(@decision)
   end
 
 

@@ -1,7 +1,6 @@
-<%= form_for :proposal, url: '/proposals' method: 'post' do |f| %>
-
-  <p> Let's decide on...
-    <%= f.label :proposed_idea %>
+<%= form_for :proposal, url: "/decisions/#{@decision.id}/proposals", method: 'post' do |f| %>
+  Let's <%= @decision.context %>
+  <p> What's your idea?
     <%= f.text_field :proposed_idea %>
   </p>
 

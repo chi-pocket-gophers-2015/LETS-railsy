@@ -1,0 +1,22 @@
+<%= form_for :participation, url: "/decisions/#{@decision.id}/participations", method: 'post' do |f| %>
+
+  <% if @participations %>
+    <%= render @participations %>
+  <% end %>
+
+  <p> Please enter the email of yo buddy
+    <%= f.text_field :user %>
+  </p>
+
+  <p>
+    <%= f.submit value="Add!" %>
+  </p>
+
+<% end %>
+<%= link_to("Next", new_decision_proposal_path(@decision)) %>
+
+<!--
+user.decisions << decision
+
+Participation.create (user:user, decision:decision)
+ -->
