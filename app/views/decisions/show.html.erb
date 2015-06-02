@@ -5,11 +5,13 @@
 
     <%= @current_query.participation.user.name %>
 
-  <div>
-    <%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put %>
-    <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
-    <%= button_to "Somewhere Else...", response_path(status: 'no'), method: :put %>
-  </div>
+    <% if @current_query.participation.user == current_user %>
+      <div>
+        <%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put %>
+        <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
+        <%= button_to "Somewhere Else...", response_path(status: 'no'), method: :put %>
+      </div>
+    <% end %>
 
   <p><em>On Deck:</em></p>
   <ul>

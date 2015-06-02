@@ -11,7 +11,7 @@ class QueriesController < ApplicationController
       QueryService.reject(@query)
       redirect_to new_decision_proposal_path(@decision)
     else
-      raise ArgumentError, 'fuck your shit'
+      raise ArgumentError, 'Query did not process properly.'
     end
   end
 
