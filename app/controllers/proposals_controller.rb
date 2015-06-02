@@ -29,4 +29,9 @@ class ProposalsController < ApplicationController
     prop.update_attributes(status: params[:status])
     # render
   end
+
+  def email_current_voter
+    UserMailer.notify_of_turn_to_vote(next_participation).deliver
+  end
+
 end
