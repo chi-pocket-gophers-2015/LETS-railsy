@@ -4,7 +4,7 @@ class Proposal < ActiveRecord::Base
   has_many   :query_participations, through: :queries, source: :participation
 
   validates_presence_of :status, :proposed_idea, :participation_id
-  # validates_inclusion_of :status, :in => %w(accepted refused open)
+  validates_inclusion_of :status, :in => %w(approved rejected open)
 
   scope :open, -> { where(status: :open) }
   scope :approved, -> { where(status: :approved) }
