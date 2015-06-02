@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proposal_id: 
+  participation_id: 
+  status: MyString
+  respond_by: 2015-06-01 20:26:36
+  responded_at: 2015-06-01 20:26:36
+
+two:
+  proposal_id: 
+  participation_id: 
+  status: MyString
+  respond_by: 2015-06-01 20:26:36
+  responded_at: 2015-06-01 20:26:36

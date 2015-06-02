@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  proposed_idea: MyString
+  participation_id: 
+
+two:
+  status: MyString
+  proposed_idea: MyString
+  participation_id: 
