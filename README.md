@@ -1,4 +1,4 @@
-#Let's [![Build Status](https://travis-ci.org/fancyultrafresh/LETS.svg?branch=add-travis)](https://travis-ci.org/fancyultrafresh/LETS)
+#Let's [![Build Status](https://travis-ci.org/chi-pocket-gophers-2015/LETS-railsy.svg?branch=master)](https://travis-ci.org/chi-pocket-gophers-2015/LETS-railsy)
 ## A Group Decision Making App
 
 #Group Agreement
