@@ -1,17 +1,19 @@
-<%= form_for :user, url: '/users', method: 'post' do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.submit value="Sign Up" %>
-  </p>
-<% end %>
+<div class="form-signin">
+  <%= form_for :user, url: '/users', method: 'post' do |f| %>
+    <p>
+      <%= f.label :name, :class => "sr-only"  %>
+      <%= f.text_field :name, :placeholder => "Name", :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.label :email, :class => "sr-only"  %>
+      <%= f.text_field :email, :placeholder => "Email", :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.label :password, :class => "sr-only"  %>
+      <%= f.password_field :password, :placeholder => "Password", :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.submit value="Sign Up", :class => "btn btn-lg btn-info btn-block" %>
+    </p>
+  <% end %>
+</div>
