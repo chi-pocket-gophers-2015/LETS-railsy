@@ -1,0 +1,2 @@
+class ProposalMailer < ApplicationMailer
+end
