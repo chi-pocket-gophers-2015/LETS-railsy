@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20150602012636) do
   add_index "participations", ["user_id"], name: "index_participations_on_user_id", using: :btree
 
   create_table "proposals", force: :cascade do |t|
-    t.string   "status"
+    t.string   "status",           default: "open"
     t.string   "proposed_idea"
     t.uuid     "participation_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "queries", force: :cascade do |t|
