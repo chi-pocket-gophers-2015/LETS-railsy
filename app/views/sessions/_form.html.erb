@@ -1,13 +1,15 @@
+<div class="form-signin">
 <%= form_for :session, url: {action: "create"} do |f| %>
   <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label :email, :class => "sr-only" %>
+    <%= f.text_field :email, :placeholder => "Email", :class => "form-control" %>
   </p>
   <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.label :password, :class => "sr-only" %>
+    <%= f.password_field :password, :placeholder => "Password", :class => "form-control" %>
   </p>
   <p>
-    <%= f.submit value="Log in" %>
+    <%= f.submit value="Log in", :class => "btn btn-lg btn-info btn-block"%>
   </p>
 <% end %>
+</div>
