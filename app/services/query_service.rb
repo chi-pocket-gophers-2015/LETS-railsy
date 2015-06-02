@@ -20,6 +20,7 @@ class QueryService
   def self.approve(query, current_participation)
     query.update_attributes(status: :yes)
     if next_participation = query.proposal.next_participation
+      query.proposal.email_current_voter(next_participation.user, query.decision)
       create_query(query.proposal, next_participation)
     else
       close(query)
