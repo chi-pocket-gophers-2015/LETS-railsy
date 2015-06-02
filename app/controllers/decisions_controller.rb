@@ -1,7 +1,12 @@
 class DecisionsController < ApplicationController
 
   def index
-    @decisions = User.find(params[:user_id]).decisions.where(is_active: true)
+
+    @user = User.find(params[:user_id])
+    @user_decisions = @user.decisions.where(is_active: true)
+    # puts "============================= #{@user_decisions.pluck(:context)}"
+
+    # @participations
   end
 
   def show
