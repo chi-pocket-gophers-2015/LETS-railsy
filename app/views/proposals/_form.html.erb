@@ -1,0 +1,12 @@
+<%= form_for :proposal, url: '/proposals' method: 'post' do |f| %>
+
+  <p> Let's decide on...
+    <%= f.label :proposed_idea %>
+    <%= f.text_field :proposed_idea %>
+  </p>
+
+  <p>
+    <%= f.submit value="Create New Proposal" %>
+  </p>
+
+<% end %>

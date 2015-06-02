@@ -6,7 +6,9 @@ class DecisionsController < ApplicationController
 
   def show
     @decision = Decision.find(params[:id]).decisions
-    @participations = @decision.participations
+    # @participations = @decision.participations
+    @proposal = @decision.proposals.where(status: open)
+    @proposal_participations = @proposal.ordered_participations
   end
 
   # def activeproposal
