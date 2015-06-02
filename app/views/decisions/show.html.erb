@@ -1,10 +1,19 @@
 <h1>LET'S <%= @decision.context %> ... <%= @current_proposal.proposed_idea %></h1>
 
+<em>Current voter:</em>
+
   <%= @current_proposal.current_voter.user.name %>
+
+<div>
+  <p></p>
+</div>
   <!--  -->
-
+<p><em>On Deck:</em></p>
 <ul>
-  <em><%= render partial: 'participant', collection: @on_deck %></em>
+  <%= render partial: 'participant', collection: @on_deck %>
+</ul>
 
+<p><em>Already Voted:</em></p>
+<ul>
   <%= render partial: 'participant', collection: @already_voted %>
 </ul>
