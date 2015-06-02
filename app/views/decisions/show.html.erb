@@ -1,21 +1,25 @@
 <h1>LET'S <%= @decision.context %> ... <%= @current_proposal.proposed_idea %></h1>
 
-<em>Current voter:</em>
+<% if @decision.is_active? %>
+  <em>Current voter:</em>
 
-  <%= @current_proposal.current_voter.user.name %>
+    <%= @current_query.participation.user.name %>
 
-<div>
-  <%= button_to "That Sounds Good!" %>
-  <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
-  <%= button_to "Somewhere Else..." %>
-</div>
+  <div>
+    <%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put %>
+    <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
+    <%= button_to "Somewhere Else...", response_path(status: 'no'), method: :put %>
+  </div>
 
-<p><em>On Deck:</em></p>
-<ul>
-  <%= render partial: 'participant', collection: @on_deck %>
-</ul>
+  <p><em>On Deck:</em></p>
+  <ul>
+    <%= render partial: 'participant', collection: @on_deck %>
+  </ul>
 
-<p><em>Already Voted:</em></p>
-<ul>
-  <%= render partial: 'participant', collection: @already_voted %>
-</ul>
+  <p><em>Already Voted:</em></p>
+  <ul>
+    <%= render partial: 'participant', collection: @already_voted %>
+  </ul>
+<% else %>
+  You decided on <%= @current_proposal.proposed_idea %>!
+<% end %>

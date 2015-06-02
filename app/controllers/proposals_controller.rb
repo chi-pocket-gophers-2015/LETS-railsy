@@ -1,32 +1,26 @@
 class ProposalsController < ApplicationController
-
-  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
+  before_action :set_decision
+  before_action :set_current_participation
 
   def new
-    @decision = Decision.find(params[:decision_id])
   end
-
 
   def create
-    @decision = Decision.find(params[:decision_id])
-    participation = Participation.find_by(user: current_user, decision: @decision)
-    prop = Proposal.new(proposed_idea: params[:proposal][:proposed_idea], participation: participation)
-    if prop.save
-      prop.queries.create(participation: participation, status: "yes", respond_by: Time.now + WAIT_TIME, responded_at: Time.now)
-      # prop.queries.create(participation:
-      ## render...
+    if QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+      redirect_to decision_path(@decision)
     else
-      # create an error to be displayed on the
+      # create an error to be displayed on the weird side of the left
       redirect_to new_decision_proposal_path(@decision)
     end
-    redirect_to decision_path(@decision)
   end
 
+  protected
 
-  def update
-    prop = Proposal.find_by(id: params[:proposal_id])
+  def set_decision
+    @decision ||= Decision.find_by(id: params[:decision_id])
+  end
 
-    prop.update_attributes(status: params[:status])
-    # render
+  def set_current_participation
+    @current_participation ||= Participation.find_by(user: current_user, decision: @decision)
   end
 end
