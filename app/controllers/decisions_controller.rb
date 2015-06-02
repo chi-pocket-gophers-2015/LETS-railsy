@@ -21,11 +21,12 @@ class DecisionsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id]) #current_user?
+    @user = current_user
     @decision = @user.decisions.new(decision_params)
 
     if @decision.save
       Participation.create(user: @user, decision: @decision)
+      redirect_to new_decision_participation_path(@decision)
     else
       errors
     end
