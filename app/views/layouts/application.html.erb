@@ -3,12 +3,33 @@
 <head>
   <title>LET'S</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <div class="page-header">
+      <ul class="nav nav-pills pull-right">
+        <% if logged_in? %>
+        <li>
+          <%= button_to('Log Out', session_path, method: :delete) %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to('Sign Up', new_user_path) %>
+        </li>
+        <li>
+          <%= link_to('Log In', new_session_path)%>
+        </li>
+        <% end %>
+      </ul>
+      <h1>LET'S</h1>
+      <small>a group decision-making app</small>
+    </div>
+  </div>
 
-<%= yield %>
-
+  <div class="container" id="main-content">
+    <%= yield %>
+  </div>
 </body>
 </html>
