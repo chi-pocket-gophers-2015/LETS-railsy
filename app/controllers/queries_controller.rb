@@ -1,30 +1,35 @@
 class QueriesController < ApplicationController
-
-
-  # def create
-  #   q = Query.new(participation_id: params[:participation_id], status: params[:status] )
-
-  #   if save
-  #     responded_at = Time.now
-  #   else
-
-  #   end
-
-  #   end
-
-  # end
-
-  # this update route only happens in the middle of a decision, upon calling this route, the next_participation_id needs to also be part of the params
+  before_action :set_decision
+  before_action :set_query
 
   def update
-    query = Query.update_attributes(status: params[:status])
-
-    if query.status == "no"
-
-      query.proposal.update_attributes(status: "refused")
-
-      new_prop = Proposal.create(status: "open", proposed_idea: params[:proposed_idea], participation_id: params[:participation_id])
-
+    case params[:status]
+    when 'yes'
+      QueryService.approve(@query, @current_participation)
+      redirect_to decision_path(@decision)
+    when 'no'
+      QueryService.reject(@query)
+      redirect_to new_decision_proposal_path(@decision)
+    else
+      raise ArgumentError, 'fuck your shit'
     end
+  end
+
+  protected
+
+  def set_decision
+    @decision ||= Decision.find_by(id: params[:decision_id])
+  end
+
+  # def set_proposal
+  #   @proposal ||= Proposal.find_by(id: params[:proposal_id])
+  # end
+
+  def set_query
+    @query ||= Query.find_by(id: params[:id])
+  end
+
+  def set_current_participation
+    @current_participation ||= Participation.find_by(user: current_user, decision: @decision)
   end
 end
