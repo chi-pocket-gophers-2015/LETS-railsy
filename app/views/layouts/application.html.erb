@@ -12,7 +12,7 @@
       <ul class="nav nav-pills pull-right">
         <% if logged_in? %>
         <li>
-          <%= button_to('Log Out', session_path, method: :delete) %>
+          <%= link_to('Log Out', logout_path) %>
         </li>
         <% else %>
         <li>
