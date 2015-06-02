@@ -6,7 +6,7 @@
 <% if current_user.email == @current_voter.user.email %>
 <div>
   <p>It's your turn to vote!</p>
-  <%= button_to "That Sounds Good!" %>
+  <%= button_to "That Sounds Good!", decision_proposal_queries_path(decision_id: @decision.id, proposal_id: @current_proposal.id) %>
   <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
   <%= button_to "Somewhere Else..." %>
 </div>
