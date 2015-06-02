@@ -1,0 +1,19 @@
+<h1>Hey, <%= @user.name %>! LET'S...</h1>
+
+<div class="container">
+
+  <h2>Take a look at your open decisions:</h2>
+
+  <% if @user_decisions %>
+    <%= render @user_decisions %>
+  <% else %>
+    <p>You have no open decisions! Consider making one...</p>
+  <% end %>
+
+</div>
+
+<div class="container">
+
+  <%= link_to('New Decision', new_decision_path) %>
+
+</div>
