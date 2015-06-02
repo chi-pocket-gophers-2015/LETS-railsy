@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-    get "login" => "sessions#create", :as => "login"
+    get "login" => "sessions#new", :as => "login"
     get "logout" => "sessions#destroy", :as => "logout"
 
-    resources :sessions, only: [:create, :destroy]
-    resources :users, only: [:create, :show]
+    resources :sessions, only: [:new, :create, :destroy]
+    resources :users, only: [:new, :create, :show]
 
     # resources :users, only: [:create] do
     #   resources :decisions, only: [:create, :update, :index, :show]# do

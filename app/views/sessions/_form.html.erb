@@ -1,11 +1,11 @@
-<%= form_for :user, url: '/login', method: 'post' do |f| %>
+<%= form_for :session, url: {action: "create"} do |f| %>
   <p>
     <%= f.label :email %>
     <%= f.text_field :email %>
   </p>
   <p>
-    <%= f.label :password_digest %>
-    <%= f.password_field :password_digest %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
   </p>
   <p>
     <%= f.submit value="Log in" %>
