@@ -1,46 +1,43 @@
 class Proposal < ActiveRecord::Base
   belongs_to :participation
   has_many   :queries
+  has_many   :query_participations, through: :queries, source: :participation
 
   validates_presence_of :status, :proposed_idea, :participation_id
-# validates_inclusion_of :status, :in => %w(accepted refused open)
+  # validates_inclusion_of :status, :in => %w(accepted refused open)
 
+  scope :open, -> { where(status: :open) }
+  scope :approved, -> { where(status: :approved) }
 
-
-  def sorted_participations
-    @_participations ||= self.decision.participations.sort
+  def decision
+    self.participation.decision
   end
 
-  def already_voted_participations
-    @_already_voted ||= self.queries.pluck(:participation_id).sort.map {|id| Participation.find(id)}
+  def participations
+    self.decision.participations
+  end
+
+  def next_participation
+    not_yet_voted.shuffle.first
   end
 
   def not_yet_voted
-    @_not_yet_voted ||= (sorted_participations - already_voted_participations)
+    self.participations.where('id NOT IN (?)', self.queries.includes(:participation).accepted.map {|x| x.participation_id })
   end
 
-  def current_voter_at_top
-    @_ordered_participations ||= not_yet_voted + already_voted_participations
+  def already_voted
+    self.query_participations.where('queries.status IS NOT NULL')
   end
 
-  def current_voter
-    @_current_voter ||= not_yet_voted.shift
+  def current_open_query
+    self.queries.open.first
   end
 
-  def not_yet_voted_minus_current_voter
-    @_not_yet_voted_minus_current_voter ||= not_yet_voted.delete(current_voter)
-    not_yet_voted
+  def approve!
+    self.update_attributes(status: :approved)
   end
 
-# helper methods
-  def decision
-    @_decision ||= self.participation.decision
+  def reject!
+    self.update_attributes(status: :rejected)
   end
-
-  # def self.proposer
-  #   @_proposer ||= self.participation.user
-  # end
-
-
-
 end

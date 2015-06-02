@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :decisions, only: [:new, :create, :show]  do
       resources :participations, only: [:new, :create]
       resources :proposals, only: [:new, :create] do
-        resources :queries, only: [:create]
+        resources :queries, only: [:update]
       end
     end
 

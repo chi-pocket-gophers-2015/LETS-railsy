@@ -1,24 +1,25 @@
 <h1>LET'S <%= @decision.context %> ... <%= @current_proposal.proposed_idea %></h1>
 
-<p><em>Current voter:</em>
-<%= @current_proposal.current_voter.user.name %></p>
+<% if @decision.is_active? %>
+  <em>Current voter:</em>
 
-<% if current_user.email == @current_voter.user.email %>
-<div>
-  <p>It's your turn to vote!</p>
-  <%= button_to "That Sounds Good!", decision_proposal_queries_path(decision_id: @decision.id, proposal_id: @current_proposal.id) %>
-  <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
-  <%= button_to "Somewhere Else..." %>
-</div>
+    <%= @current_query.participation.user.name %>
+
+  <div>
+    <%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put %>
+    <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
+    <%= button_to "Somewhere Else...", response_path(status: 'no'), method: :put %>
+  </div>
+
+  <p><em>On Deck:</em></p>
+  <ul>
+    <%= render partial: 'participant', collection: @on_deck %>
+  </ul>
+
+  <p><em>Already Voted:</em></p>
+  <ul>
+    <%= render partial: 'participant', collection: @already_voted %>
+  </ul>
+<% else %>
+  You decided on <%= @current_proposal.proposed_idea %>!
 <% end %>
-
-
-<p><em>On Deck:</em></p>
-<ul>
-  <%= render partial: 'participant', collection: @on_deck %>
-</ul>
-
-<p><em>Already Voted:</em></p>
-<ul>
-  <%= render partial: 'participant', collection: @already_voted %>
-</ul>

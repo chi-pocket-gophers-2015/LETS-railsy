@@ -5,4 +5,8 @@ class Decision < ActiveRecord::Base
   # has_one  :winning_proposal, through: :participations, source: :proposal
 
   validates_presence_of :context
+
+  def approve!
+    self.update_attributes(is_active: false)
+  end
 end

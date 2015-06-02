@@ -11,15 +11,16 @@ class DecisionsController < ApplicationController
 
   def show
     @decision = Decision.find(params[:id])
-    # @participations = @decision.participations
-    @current_proposal = @decision.proposals.where(status: "open")[0]
-    @current_voter = @current_proposal.current_voter
-    @on_deck =@current_proposal.not_yet_voted_minus_current_voter
-    @already_voted = @current_proposal.already_voted_participations
-
-
-
-    # @current_voter = @decision_participants[0]
+    if @decision.is_active?
+      # @participations = @decision.participations
+      @current_proposal = @decision.proposals.find_by(status: "open")
+      @current_query = @current_proposal.current_open_query
+      @on_deck = @current_proposal.not_yet_voted - [@current_query.participation]
+      @already_voted = @current_proposal.already_voted
+      # @current_voter = @decision_participants[0]
+    else
+      @current_proposal = @decision.proposals.approved.first
+    end
   end
 
   def new
@@ -27,11 +28,10 @@ class DecisionsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @decision = @user.decisions.new(decision_params)
+    @decision = QueryService.create_decision(context: decision_params[:context])
+    QueryService.add_user(@decision, current_user)
 
-    if @decision.save
-      Participation.create(user: @user, decision: @decision)
+    if @decision.valid?
       redirect_to new_decision_participation_path(@decision)
     else
       errors
