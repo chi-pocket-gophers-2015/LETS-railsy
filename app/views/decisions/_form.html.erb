@@ -1,0 +1,12 @@
+<%= form_for :decision, url: '/decisions' method: 'post' do |f| %>
+
+  <p> Let's decide...
+    <%= f.label :context %>
+    <%= f.text_field :context %>
+  </p>
+
+  <p>
+    <%= f.submit value="Create New Decision" %>
+  </p>
+
+<% end %>
