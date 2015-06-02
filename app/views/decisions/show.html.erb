@@ -1,14 +1,17 @@
 <h1>LET'S <%= @decision.context %> ... <%= @current_proposal.proposed_idea %></h1>
 
-<em>Current voter:</em>
+<p><em>Current voter:</em>
+<%= @current_proposal.current_voter.user.name %></p>
 
-  <%= @current_proposal.current_voter.user.name %>
-
+<% if current_user.email == @current_voter.user.email %>
 <div>
+  <p>It's your turn to vote!</p>
   <%= button_to "That Sounds Good!" %>
   <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
   <%= button_to "Somewhere Else..." %>
 </div>
+<% end %>
+
 
 <p><em>On Deck:</em></p>
 <ul>
