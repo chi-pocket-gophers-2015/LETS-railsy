@@ -1,7 +1,5 @@
 <div class="single_active_decision">
-  <h3><%= decision.context %></h3>
-  <!-- <h4><%= decision.winning_proposal %></h4> -->
-  <%= participants(decision) %>
-  <i><%= decision.created_at %></i>
+  <h3><%= link_to("#{decision.context}", decision_path(decision)) %></h3>
+  <%= decision.created_at %>
 </div>
 

@@ -1,7 +1,12 @@
 class DecisionsController < ApplicationController
 
   def index
-    @decisions = User.find(params[:user_id]).decisions.where(is_active: true)
+
+    @user = User.find(params[:user_id])
+    @user_decisions = @user.decisions.where(is_active: true)
+    # puts "============================= #{@user_decisions.pluck(:context)}"
+
+    # @participations
   end
 
   def show
@@ -11,12 +16,12 @@ class DecisionsController < ApplicationController
     @proposal_participations = @proposal.ordered_participations
   end
 
-  # def activeproposal
-
-  # end
+  def new
+    @decision = Decision.new
+  end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id]) #current_user?
     @decision = @user.decisions.new(decision_params)
 
     if @decision.save
