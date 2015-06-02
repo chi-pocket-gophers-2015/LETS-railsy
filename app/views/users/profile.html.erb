@@ -1,0 +1,20 @@
+<h1>Hey, <%= user.name %>! LET'S...</h1>
+
+<div class="container">
+
+  <h2>Take a look at your open decisions</h2>
+
+  <% render @user_decisions %>
+
+</div>
+
+<div class="container">
+
+<!--   <%= button_to(Create New Decision, new_decision_path %>  STRINGIFY TITLE!!
+    => "<form method="post" action="decisions/new" class="button_to">
+        <input value="New" type="submit" />
+      </form> -->
+
+  <%= link_to("Create New Decision", new_decision_path) %>
+
+</div>

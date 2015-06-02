@@ -27,7 +27,7 @@ class Proposal < ActiveRecord::Base
   end
 
   def next_voter
-    ordered_participations[0]
+    ordered_participations[0] #this won't persist correct order
   end
 
   validates_presence_of :status, :proposed_idea, :participation_id
