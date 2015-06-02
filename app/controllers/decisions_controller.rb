@@ -11,12 +11,12 @@ class DecisionsController < ApplicationController
     @proposal_participations = @proposal.ordered_participations
   end
 
-  # def activeproposal
-
-  # end
+  def new
+    @decision = Decision.new
+  end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id]) #current_user?
     @decision = @user.decisions.new(decision_params)
 
     if @decision.save

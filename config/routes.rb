@@ -6,7 +6,16 @@ Rails.application.routes.draw do
     get "logout" => "sessions#destroy", :as => "logout"
 
     resources :sessions, only: [:new, :create, :destroy]
-    resources :users, only: [:new, :create, :show]
+    resources :users, only: [:new, :create, :show] do
+      resources :decisions, only: [:index]
+    end
+
+    resources :decisions, only: [:new, :create, :show]  do
+      resources :proposals, only: [:new, :create] do
+        resources :queries, only: [:create]
+      end
+    end
+
 
     # resources :users, only: [:create] do
     #   resources :decisions, only: [:create, :update, :index, :show]# do
