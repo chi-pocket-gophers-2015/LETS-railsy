@@ -1,8 +1,8 @@
-Hi <%= @user.name %>,
+Dear <%= @user.name %>,
 
-Just a heads-up that it's your turn to vote:
+You're included in an upcoming LET'S decision. Just a heads-up that it's your turn to vote.
 
-<%= link_to "Vote here!", decision_proposal_queries_path %> <!-- (not sure about path) -->
+<h3><%= link_to "Vote here!", decision_proposal_queries_url(@query) %> <!-- (not sure about path) --></h3>
 
 Thanks and enjoy,
 Your friends at LET'S
