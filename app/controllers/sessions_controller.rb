@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     puts params
     if @user = User.find_by(email: params[:session][:email])
-      @user.authenticate(params[:session][:password])
+      @user.authenticate(params[:session][:password_digest])
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
