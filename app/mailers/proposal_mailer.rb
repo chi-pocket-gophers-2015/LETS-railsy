@@ -6,5 +6,17 @@ class ProposalMailer < ApplicationMailer
     mail(to: @user.email, subject: "LET'S - It's Your Turn to Vote!")
   end
 
+  def invitation_notification
+
+  end
+
+  def decision_made_notification
+
+  end
+
+  def time_expired_notification
+
+  end
+
 
 end
