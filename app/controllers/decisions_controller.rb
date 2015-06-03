@@ -39,6 +39,7 @@ class DecisionsController < ApplicationController
   end
 
   def destroy
+    @decision = Decision.find(params[:id])
 
   end
 
