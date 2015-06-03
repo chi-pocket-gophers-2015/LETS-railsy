@@ -29,6 +29,7 @@ class DecisionsController < ApplicationController
 
   def create
     @decision = QueryService.create_decision(context: decision_params[:context])
+    ProcessExpiredQueries.perform_async(@decision)
     QueryService.add_user(@decision, current_user)
 
     if @decision.valid?
