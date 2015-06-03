@@ -8,7 +8,7 @@ class ProposalsController < ApplicationController
   def create
     if params[:proposal][:proposed_idea] != ""
       QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
-      # QueryCleanupWorker.perform_async(@decision.id)
+      QueryCleanupWorker.perform_async(@decision.id)
 
       redirect_to decision_path(@decision)
     else
