@@ -34,7 +34,7 @@ class DecisionsController < ApplicationController
     if @decision.valid?
       redirect_to new_decision_participation_path(@decision)
     else
-      errors
+      flash.now[:error] = "We could not create your new decision; please try again."
     end
   end
 
