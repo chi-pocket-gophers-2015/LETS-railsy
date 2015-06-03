@@ -14,6 +14,7 @@ class ProposalsController < ApplicationController
     end
   end
 
+
   protected
 
   def set_decision
@@ -23,4 +24,7 @@ class ProposalsController < ApplicationController
   def set_current_participation
     @current_participation ||= Participation.find_by(user: current_user, decision: @decision)
   end
+
+
+
 end
