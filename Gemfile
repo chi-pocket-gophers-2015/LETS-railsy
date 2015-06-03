@@ -13,6 +13,7 @@ gem 'pg'
 
 gem 'rails_12factor'
 
+gem 'giphy'
 # gem 'rack-cors', require: 'rack/cors'
 # gem "active_model_serializers", github: "rails-api/active_model_serializers"
 

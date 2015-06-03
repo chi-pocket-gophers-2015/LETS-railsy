@@ -29,13 +29,16 @@ class DecisionsController < ApplicationController
 
   def create
     @decision = QueryService.create_decision(context: decision_params[:context])
-    ProcessExpiredQueries.perform_async(@decision)
-    QueryService.add_user(@decision, current_user)
+
+    if decision_params[:context] != ""
+      QueryService.add_user(@decision, current_user)
+    end
 
     if @decision.valid?
       redirect_to new_decision_participation_path(@decision)
     else
-      errors
+      flash.now[:error] = "We could not create your new decision; please try again."
+      render(:new)
     end
   end
 

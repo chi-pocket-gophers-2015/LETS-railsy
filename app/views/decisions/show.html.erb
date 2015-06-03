@@ -1,27 +1,43 @@
-<h1>LET'S <%= @decision.context %> ... <%= @current_proposal.proposed_idea %></h1>
+<div>
 
-<% if @decision.is_active? %>
-  <em>Current voter:</em>
+  <h2>Let's <%= @decision.context %> ... <%= @current_proposal.proposed_idea %>!</h2>
 
-    <%= @current_query.participation.user.name %>
+  <% if @decision.is_active? %>
+      <h3>Current voter: <%= @current_query.participation.user.name %></h3>
+
+
+
+  <!--   <div class="progress">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+        <span class="sr-only">45% Complete</span>
+      </div>
+    </div> -->
 
     <% if @current_query.participation.user == current_user %>
       <div>
-        <%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put %>
+        <%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put, :class => "btn btn-success btn-lg btn-block" %>
         <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
-        <%= button_to "Somewhere Else...", response_path(status: 'no'), method: :put %>
+        <%= button_to "Something Else...", response_path(status: 'no'), method: :put, :class => "btn btn-danger btn-lg btn-block" %>
       </div>
     <% end %>
 
-  <p><em>On Deck:</em></p>
-  <ul>
-    <%= render partial: 'participant', collection: @on_deck %>
-  </ul>
 
-  <p><em>Already Voted:</em></p>
-  <ul>
-    <%= render partial: 'participant', collection: @already_voted %>
-  </ul>
-<% else %>
-  You decided on <%= @current_proposal.proposed_idea %>!
-<% end %>
+
+    <% if @on_deck.length > 0 %>
+      <h4>On Deck:</h4>
+      <ul class="list-group list-unstyled">
+        <li class="list-group-item list-group-item-info"><%= render partial: 'participant', collection: @on_deck %></li>
+      </ul>
+    <% end %>
+
+
+    <% if @already_voted.length > 0 %>
+      <h4>Already Voted:</h4>
+      <ul class="list-group list-unstyled">
+        <li class="list-group-item list-group-item-success"><%= render partial: 'participant', collection: @already_voted %></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p>Congratulations! You decided on <%= @current_proposal.proposed_idea %>!</p>
+  <% end %>
+</div>

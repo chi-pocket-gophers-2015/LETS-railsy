@@ -12,6 +12,7 @@ class QueriesController < ApplicationController
       redirect_to new_decision_proposal_path(@decision)
     else
       raise ArgumentError, 'Query did not process properly.'
+      # flash.now[:error] = "Query did not process properly."
     end
   end
 

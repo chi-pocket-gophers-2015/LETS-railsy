@@ -1,22 +1,18 @@
-<h1>Hey, <%= @user.name %>! LET'S...</h1>
+<div>
+  <h1>Hey, <%= @user.name %>!</h1>
 
-<div class="container">
-
-  <h2>Take a look at your open decisions:</h2>
-
-
-  <% if @user_decisions %>
-    <%= render @user_decisions %>
-  <% else %>
-    <p>You have no open decisions! Consider making one...</p>
-  <% end %>
+  <button class="btn btn-lg btn-default btn-block"><%= link_to(" Let's Make a New Decision!", new_decision_path) %></button>
 
 
+  <div>
+    <h4>Take a look at your open decisions:</h4>
 
+    <% if @user_decisions %>
+      <%= render @user_decisions %>
+    <% else %>
+      <p>You have no open decisions! Consider making one...</p>
+    <% end %>
+  </div>
 </div>
 
-<div class="container">
 
-  <%= link_to('New Decision', new_decision_path) %>
-
-</div>

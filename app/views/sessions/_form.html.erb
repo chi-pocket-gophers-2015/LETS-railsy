@@ -1,15 +1,20 @@
 <div class="form-signin">
-<%= form_for :session, url: {action: "create"} do |f| %>
-  <p>
-    <%= f.label :email, :class => "sr-only" %>
-    <%= f.text_field :email, :placeholder => "Email", :class => "form-control" %>
-  </p>
-  <p>
-    <%= f.label :password, :class => "sr-only" %>
-    <%= f.password_field :password, :placeholder => "Password", :class => "form-control" %>
-  </p>
-  <p>
-    <%= f.submit value="Log in", :class => "btn btn-lg btn-info btn-block"%>
-  </p>
-<% end %>
+  <%= form_for :session, url: {action: "create"} do |f| %>
+    <p>
+      <%= f.label :email, :class => "sr-only" %>
+      <%= f.text_field :email, :placeholder => "Email", :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.label :password, :class => "sr-only" %>
+      <%= f.password_field :password, :placeholder => "Password", :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.submit value="Log in", :class => "btn btn-lg btn-info btn-block"%>
+    </p>
+  <% end %>
+
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
+
 </div>
