@@ -7,7 +7,7 @@ class Query < ActiveRecord::Base
 
   scope :accepted, -> { where(status: :yes) }
   scope :rejected, -> { where(status: :no)  }
-  scope :open,     -> { where(status: nil)  }
+  scope :open,     -> { where(status: nil, status: :no_waiting)  }
 
   def user
     self.participation.user
@@ -21,3 +21,12 @@ class Query < ActiveRecord::Base
     self.proposal.decision
   end
 end
+
+
+# scope :active, -> {
+#   where(created_at: (Time.now - 1.day)..Time.now, gold_member: true, registered: true)
+# }
+
+
+
+# where status is in ["no_waiting "] AND is NULL
