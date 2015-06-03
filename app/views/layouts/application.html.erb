@@ -12,6 +12,9 @@
       <ul class="nav nav-pills pull-right">
         <% if logged_in? %>
         <li>
+          <%= link_to('My Decisions', user_decisions_path(current_user)) %>
+        </li>
+        <li>
           <%= link_to('Log Out', logout_path) %>
         </li>
         <% else %>
