@@ -1,8 +1,8 @@
-Dear <%= @user.name %>,
+Dear <%= @user.name %>,<br />
 <br />
-You and your friends have made a decision!
+Congrats - you and your friends have made a decision!<br />
 <br />
-The consensus is: <em><%= decision.proposals.last %>. Enjoy!
+Everyone agreed on: <em><%= @decision.proposals.last.proposed_idea %></em>.<br />
 <br />
-Yours truly,
+Enjoy,<br />
 Your friends at LET'S

@@ -10,7 +10,7 @@ class ProposalMailer < ApplicationMailer
     mail(to: @user.email, subject: "LET'S - You're Invited!")
   end
 
-  def notify_of_final_decision(user)
+  def notify_of_final_decision(user, decision)
     @user = user
     @decision = decision
     mail(to: @user.email, subject: "LET'S - You've Reached a Decision!")
@@ -21,6 +21,5 @@ class ProposalMailer < ApplicationMailer
     @decision = decision
     mail(to: @user.email, subject: "LET'S - You Missed Your Turn!")
   end
-
 
 end
