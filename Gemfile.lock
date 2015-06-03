@@ -183,7 +183,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.1)
   rails_12factor
-  responders
+  responders (~> 2.0)
   rspec-rails (~> 3.0)
   shoulda-matchers
   simplecov
