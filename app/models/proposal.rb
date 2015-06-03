@@ -40,4 +40,8 @@ class Proposal < ActiveRecord::Base
   def reject!
     self.update_attributes(status: :rejected)
   end
+
+  def email_current_voter(user, decision)
+    ProposalMailer.notify_of_turn_to_vote(user, decision).deliver_now
+  end
 end

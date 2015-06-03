@@ -14,9 +14,6 @@ class ProposalsController < ApplicationController
     end
   end
 
-  def email_current_voter(user, decision)
-    UserMailer.notify_of_turn_to_vote(user, decision).deliver
-  end
 
   protected
 

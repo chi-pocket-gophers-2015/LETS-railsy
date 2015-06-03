@@ -20,7 +20,6 @@ class QueryService
   def self.approve(query, current_participation)
     query.update_attributes(status: :yes)
     if next_participation = query.proposal.next_participation
-      query.proposal.email_current_voter(next_participation.user, query.decision)
       create_query(query.proposal, next_participation)
     else
       close(query)
@@ -48,6 +47,11 @@ class QueryService
   end
 
   def self.create_query(proposal, next_participation=nil)
+    # proposal.email_current_voter(proposal.next_participation.user, proposal.decision)
+    user = proposal.next_participation.user
+    puts user.email
+    ProposalMailer.notify_of_turn_to_vote(user).deliver_now
+
     proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: Time.now + WAIT_TIME)
   end
 end
