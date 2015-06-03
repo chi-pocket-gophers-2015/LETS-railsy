@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :decisions, only: [:index]
     end
 
-    resources :decisions, only: [:new, :create, :show]  do
+    resources :decisions, only: [:new, :create, :show, :destroy]  do
       resources :participations, only: [:new, :create]
       resources :proposals, only: [:new, :create] do
         resources :queries, only: [:update]
