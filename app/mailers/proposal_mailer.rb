@@ -19,6 +19,7 @@ class ProposalMailer < ApplicationMailer
     mail(to: @user.email, subject: "LET'S - You've Reached a Decision!")
   end
 
+  #NEED TO ADD AFTER TIMING JOB SO GOES OUT WHEN SOMEONE MISSES TURN
   def notify_of_expired_time(user, decision)
     @user = user
     @decision = decision
