@@ -6,9 +6,6 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    puts "heyeyeye #{params}"
-
-
     user = User.find_by_email(params[:participation][:user])
     # participation = Participation.find_by(user_id: user.id)
 

@@ -5,8 +5,7 @@
 
   <div>
     <h4>Take a look at your open decisions:</h4>
-
-    <% if @user_decisions %>
+    <% if @user_decisions.any? %>
       <%= render @user_decisions %>
     <% else %>
       <p>You have no open decisions! Consider making one...</p>

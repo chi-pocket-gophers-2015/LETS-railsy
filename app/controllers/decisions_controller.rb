@@ -1,15 +1,15 @@
 class DecisionsController < ApplicationController
-    before_action :user_decisions, only: [:index]
-    respond_to :html, :js
+    # before_action :user_decisions, only: [:index]
+    # respond_to :html, :js
 
 
-  # def index
-  #   @user = User.find(current_user)
-  #   @user_decisions = @user.decisions.where(is_active: true).order(created_at: :desc)
-  #   # puts "============================= #{@user_decisions.pluck(:context)}"
+  def index
+    @user = user
+    @user_decisions = user_decisions
+    # puts "============================= #{@user_decisions.pluck(:context)}"
 
-  #   # @participations
-  # end
+    # @participations
+  end
 
   def show
     @decision = Decision.find(params[:id])
@@ -17,8 +17,13 @@ class DecisionsController < ApplicationController
       # @participations = @decision.participations
       @current_proposal = @decision.proposals.find_by(status: "open")
       @current_query = @current_proposal.current_open_query
-      @on_deck = @current_proposal.not_yet_voted - [@current_query.participation]
       @already_voted = @current_proposal.already_voted
+      if !@current_query.nil?
+        @on_deck = @current_proposal.not_yet_voted - [@current_query.participation]
+      else
+        @decision.approve!
+        @on_deck = []
+      end
       # @current_voter = @decision_participants[0]
     else
       @current_proposal = @decision.proposals.approved.first
