@@ -6,7 +6,8 @@ class QueryService
   end
 
   def self.add_user(decision, user)
-    user.decisions << decision
+
+      user.decisions << decision
   end
 
   # Start a new decision
