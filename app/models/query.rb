@@ -7,14 +7,14 @@ class Query < ActiveRecord::Base
 
   scope :accepted, -> { where(status: :yes) }
   scope :rejected, -> { where(status: :no)  }
-  scope :open,     -> { where(status: :waiting, status: :no_waiting)  }
+  scope :open,     -> { where(status: :waiting)  }
 
   def user
     self.participation.user
   end
 
-  def mark_as_no_waiting!
-    self.update_attributes(status: :no_waiting)
+  def mark_as_no_waiting! #we got rid of the option of "no_waiting" but are afraid to change too much shit
+    self.update_attributes(status: :waiting)
   end
 
   def decision

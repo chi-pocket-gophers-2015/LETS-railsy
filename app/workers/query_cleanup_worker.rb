@@ -21,7 +21,8 @@ class QueryCleanupWorker
 
     query = Decision.find_by(id: decision_id).proposals.open.first.current_open_query
 
-    if (query.status == nil || query.status == "no_waiting") && query.respond_by < Time.now
+    # if (query.status == nil || query.status == "no_waiting") && query.respond_by < Time.now
+    if query.respond_by < Time.now
       QueryService.approve(query)
     end
   end
