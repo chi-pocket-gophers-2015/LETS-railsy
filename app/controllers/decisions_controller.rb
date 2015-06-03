@@ -43,9 +43,6 @@ class DecisionsController < ApplicationController
     end
   end
 
-  def destroy
-
-  end
 
   private
   def decision_params
