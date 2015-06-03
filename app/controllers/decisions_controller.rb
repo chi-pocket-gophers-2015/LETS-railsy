@@ -5,11 +5,12 @@ class DecisionsController < ApplicationController
     @user = User.find(params[:user_id])
     @user_decisions = @user.decisions.where(is_active: true)
     # puts "============================= #{@user_decisions.pluck(:context)}"
-
-    # @participations
+    # @parti
+    # @users_participations = @user.participations.select{|p| p.decision.is_active}
   end
 
   def show
+
     @decision = Decision.find(params[:id])
     if @decision.is_active?
       # @participations = @decision.participations
@@ -18,6 +19,8 @@ class DecisionsController < ApplicationController
       @on_deck = @current_proposal.not_yet_voted - [@current_query.participation]
       @already_voted = @current_proposal.already_voted
       # @current_voter = @decision_participants[0]
+      p @current_user_participation = @decision.participations.where(user_id: current_user.id).first
+
     else
       @current_proposal = @decision.proposals.approved.first
     end
@@ -38,10 +41,15 @@ class DecisionsController < ApplicationController
     end
   end
 
-  def destroy
-    @decision = Decision.find(params[:id])
+  # def destroy
+  #   puts "going down delete"
+  #   puts params
 
-  end
+  #   @decision = Decision.find(params[:id])
+  #   @decision.destroy
+
+  #   redirect_to user_decisions_path(current_user)
+  # end
 
   private
   def decision_params

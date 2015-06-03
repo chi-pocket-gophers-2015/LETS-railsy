@@ -37,6 +37,8 @@
         <li class="list-group-item list-group-item-success"><%= render partial: 'participant', collection: @already_voted %></li>
       </ul>
     <% end %>
+
+    <%= button_to "Opt Out", decision_participation_path(decision_id: @decision.id, id: @current_user_participation.id), method: :delete %>
   <% else %>
     <p>Congratulations! You decided on <%= @current_proposal.proposed_idea %>!</p>
   <% end %>

@@ -16,4 +16,15 @@ class ParticipationsController < ApplicationController
     end
     redirect_to new_decision_participation_path(@decision)
   end
+
+  def destroy
+    p @participation = Participation.find(params[:id])
+    p @decision = Decision.find(params[:decision_id])
+
+
+    if @decision.proposals
+
+    @participation.destroy
+    redirect_to user_decisions_path(current_user.id)
+  end
 end

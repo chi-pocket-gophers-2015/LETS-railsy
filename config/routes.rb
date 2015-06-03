@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
     root to: 'sessions#new'
 
+
+
     get "login" => "sessions#new", :as => "login"
     get "logout" => "sessions#destroy", :as => "logout"
 
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
     end
 
     resources :decisions, only: [:new, :create, :show, :destroy]  do
-      resources :participations, only: [:new, :create]
+      resources :participations, only: [:new, :create, :destroy]
       resources :proposals, only: [:new, :create] do
         resources :queries, only: [:update]
       end
