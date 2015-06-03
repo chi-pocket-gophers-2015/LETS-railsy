@@ -10,9 +10,11 @@ class ProposalsController < ApplicationController
       redirect_to decision_path(@decision)
     else
       # create an error to be displayed on the weird side of the left
+      flash.now[:error] = "Your proposal could not be created; please try again."
       redirect_to new_decision_proposal_path(@decision)
     end
   end
+
 
   protected
 
@@ -23,4 +25,7 @@ class ProposalsController < ApplicationController
   def set_current_participation
     @current_participation ||= Participation.find_by(user: current_user, decision: @decision)
   end
+
+
+
 end

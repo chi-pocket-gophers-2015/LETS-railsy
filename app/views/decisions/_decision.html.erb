@@ -1,5 +1,5 @@
 <div class="single_active_decision">
   <h3><%= link_to("#{decision.context}", decision_path(decision)) %></h3>
-  <%= decision.created_at %>
+  <p>Created <%= time_ago_in_words(decision.created_at) %> ago</p>
 </div>
 

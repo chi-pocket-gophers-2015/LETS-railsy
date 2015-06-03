@@ -5,7 +5,11 @@
   </p>
 
   <p>
-    <%= f.submit value="Create New Decision" %>
+    <%= f.submit value="Create New Decision", :class => "btn btn-lg btn-info btn-block" %>
   </p>
 
 <% end %>
+
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
