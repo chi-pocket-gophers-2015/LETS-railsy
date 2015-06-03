@@ -20,6 +20,9 @@ gem 'rails_12factor'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'sidekiq'
+
+# gem 'redis'###################I DON'T KNOW IF I NEED THIS######################
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

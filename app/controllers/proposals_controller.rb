@@ -7,6 +7,8 @@ class ProposalsController < ApplicationController
 
   def create
     if QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+      # QueryCleanupWorker.perform_async(@decision.id)
+
       redirect_to decision_path(@decision)
     else
       # create an error to be displayed on the weird side of the left

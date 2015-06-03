@@ -1,5 +1,5 @@
 class QueryService
-  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
+  WAIT_TIME = 1 * 60 #for converting time from seconds to minutes
 
   def self.create_decision(context)
     Decision.create(context)
@@ -17,8 +17,8 @@ class QueryService
   end
 
   # Update a query with a yes
-  def self.approve(query, current_participation)
-    query.update_attributes(status: :yes)
+  def self.approve(query)#, current_participation)
+    query.update_attributes(status: :yes, responded_at: Time.now)
     if next_participation = query.proposal.next_participation
       create_query(query.proposal, next_participation)
     else
