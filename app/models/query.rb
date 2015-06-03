@@ -7,7 +7,7 @@ class Query < ActiveRecord::Base
 
   scope :accepted, -> { where(status: :yes) }
   scope :rejected, -> { where(status: :no)  }
-  scope :open,     -> { where(status: nil, status: :no_waiting)  }
+  scope :open,     -> { where(status: :waiting, status: :no_waiting)  }
 
   def user
     self.participation.user
