@@ -2,7 +2,9 @@ class DecisionsController < ApplicationController
 
   def index
 
-    @user = User.find(params[:user_id])
+
+
+    @user = User.find(current_user)
     @user_decisions = @user.decisions.where(is_active: true).order(created_at: :desc)
     # puts "============================= #{@user_decisions.pluck(:context)}"
 

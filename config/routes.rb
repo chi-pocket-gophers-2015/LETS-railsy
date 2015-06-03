@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get "login" => "sessions#new", :as => "login"
     get "logout" => "sessions#destroy", :as => "logout"
 
+    get "profile" => "decisions#index", :as => "profile"
+
     resources :sessions, only: [:new, :create, :destroy]
     resources :users, only: [:new, :create, :show] do
       resources :decisions, only: [:index]
