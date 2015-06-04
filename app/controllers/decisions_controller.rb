@@ -1,13 +1,15 @@
 class DecisionsController < ApplicationController
+    before_action :user_decisions, only: [:index]
+    respond_to :html, :js
 
-  def index
 
-    @user = User.find(params[:user_id])
-    @user_decisions = @user.decisions.where(is_active: true)
-    # puts "============================= #{@user_decisions.pluck(:context)}"
+  # def index
+  #   @user = User.find(current_user)
+  #   @user_decisions = @user.decisions.where(is_active: true).order(created_at: :desc)
+  #   # puts "============================= #{@user_decisions.pluck(:context)}"
 
-    # @participations
-  end
+  #   # @participations
+  # end
 
   def show
     @decision = Decision.find(params[:id])
@@ -42,7 +44,18 @@ class DecisionsController < ApplicationController
     end
   end
 
+
   private
+
+  def user_decisions
+    @user = user
+    @user_decisions = @user.decisions.where(is_active: true).order(created_at: :desc)
+  end
+
+  def user
+    @user = User.find(current_user)
+  end
+
   def decision_params
     params.require(:decision).permit(:context)
   end

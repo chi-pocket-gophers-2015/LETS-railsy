@@ -7,6 +7,7 @@ class QueryService
 
   def self.add_user(decision, user)
     user.decisions << decision
+    ProposalMailer.notify_of_invitation(user).deliver_now
   end
 
   # Start a new proposal
@@ -37,8 +38,13 @@ class QueryService
 
   # Close a decision
   def self.close(query)
+    decision = query.decision
+    users = query.decision.participants
     query.proposal.approve!
     query.decision.approve!
+    users.each do |user|
+      ProposalMailer.notify_of_final_decision(user, decision).deliver_now
+    end
   end
 
   protected
@@ -52,7 +58,7 @@ class QueryService
   def self.create_query(proposal, next_participation=nil)
     # proposal.email_current_voter(proposal.next_participation.user, proposal.decision)
     user = proposal.next_participation.user
-    puts user.email
+    # puts user.email
     ProposalMailer.notify_of_turn_to_vote(user).deliver_now
 
     proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: Time.now + WAIT_TIME)

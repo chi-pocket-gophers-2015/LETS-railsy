@@ -14,7 +14,7 @@ module LETS
     config.action_mailer.smtp_settings = {
       address: "smtp.gmail.com",
       port: 587,
-      user_name: 'letsdecisions@gmail.com',
+      user_name: 'LETSdecisions@gmail.com',
       password: 'igeekallweek',
       authentication: :plain,
       enable_starttls_auto: true
