@@ -51,8 +51,8 @@ class DecisionsController < ApplicationController
 
   # GET /decisions/:id/something_changed
   def something_changed
-    render json: CacheChanged.read(params[:id], current_user)
-    CacheChanged.write(params[:id, current_user, false)
+    render json: CacheChanged.read(params[:id], session[:user_id])
+    CacheChanged.write(params[:id], session[:user_id], false)
   end
 
   private

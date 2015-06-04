@@ -13,12 +13,14 @@ Rails.application.routes.draw do
     end
 
     resources :decisions, only: [:new, :create, :show, :destroy]  do
+      member do
+        get 'something_changed'
+      end
       resources :participations, only: [:new, :create]
       resources :proposals, only: [:new, :create] do
         resources :queries, only: [:update]
       end
     end
-
 
     # resources :users, only: [:create] do
     #   resources :decisions, only: [:create, :update, :index, :show]# do

@@ -1,5 +1,5 @@
 class QueryService
-  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
+  WAIT_TIME = 1 * 60 #for converting time from seconds to minutes
 
   def self.create_decision(context)
     Decision.create(context)
@@ -54,7 +54,7 @@ class QueryService
 
   def self.set_changed_on(decision, user=nil)
     decision.participations.each do |participation|
-      CacheChanged.write(decision.id, participation.user_id, true)
+      ::CacheChanged.write(decision.id, participation.user_id, true)
     end
   end
 
