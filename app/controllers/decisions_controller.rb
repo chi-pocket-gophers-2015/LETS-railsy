@@ -31,6 +31,7 @@ class DecisionsController < ApplicationController
 
   def create
     @decision = QueryService.create_decision(context: decision_params[:context])
+
     if decision_params[:context] != ""
       QueryService.add_user(@decision, current_user)
     end

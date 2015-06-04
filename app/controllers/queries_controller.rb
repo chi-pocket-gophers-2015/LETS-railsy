@@ -5,7 +5,7 @@ class QueriesController < ApplicationController
   def update
     case params[:status]
     when 'yes'
-      QueryService.approve(@query, @current_participation)
+      QueryService.approve(@query)#, @current_participation)
       redirect_to decision_path(@decision)
     when 'no'
       QueryService.reject(@query)

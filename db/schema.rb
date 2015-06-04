@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602012636) do
+ActiveRecord::Schema.define(version: 20150603204845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 20150602012636) do
   create_table "queries", force: :cascade do |t|
     t.integer  "proposal_id"
     t.uuid     "participation_id"
-    t.string   "status"
+    t.string   "status",           default: "waiting"
     t.datetime "respond_by"
     t.datetime "responded_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "queries", ["proposal_id"], name: "index_queries_on_proposal_id", using: :btree

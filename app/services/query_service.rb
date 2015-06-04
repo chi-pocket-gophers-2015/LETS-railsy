@@ -1,5 +1,5 @@
 class QueryService
-  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
+  WAIT_TIME = 45#2 * 60 #for converting time from seconds to minutes
 
   def self.create_decision(context)
     Decision.create(context)
@@ -10,16 +10,19 @@ class QueryService
     ProposalMailer.notify_of_invitation(user).deliver_now
   end
 
-  # Start a new decision
+  # Start a new proposal
   def self.create_proposal(decision, current_participation, idea)
-    decision.proposals.open.each {|p| p.reject! }
+    if decision.proposals.length > 0
+      decision.proposals.open.first.update_prior_query
+    end
+    decision.proposals.open.each {|p| p.reject!}
     proposal = propose(current_participation, idea)
     create_query(proposal)
   end
 
   # Update a query with a yes
-  def self.approve(query, current_participation)
-    query.update_attributes(status: :yes)
+  def self.approve(query)#, current_participation)
+    query.update_attributes(status: :yes, responded_at: Time.now)
     if next_participation = query.proposal.next_participation
       create_query(query.proposal, next_participation)
     else
