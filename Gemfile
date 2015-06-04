@@ -26,7 +26,6 @@ gem 'sidekiq'
 
 gem 'responders', '~> 2.0'
 
-
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

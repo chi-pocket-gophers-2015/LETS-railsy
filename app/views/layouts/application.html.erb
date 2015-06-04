@@ -3,29 +3,38 @@
 
 <head>
   <title>LET'S</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=NTR' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-
-  <div class="container">
-    <div class="page-header">
-      <ul class="nav nav-pills">
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <% if logged_in? %>
+        <%= link_to(image_tag("lets-sm.png", size: "200x80"), profile_path) %>
+      <% else %>
+        <%= link_to(image_tag("lets-sm.png", size: "200x80"), new_user_path) %>
+      <% end %>
+    </div>
+    <div>
+      <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to('My Decisions', profile_path) %></li>
-          <li><%= link_to('Log Out', logout_path) %></li>
+          <li class="nav-link"><%= link_to('My Decisions', profile_path) %></li>
+          <li class="nav-link"><%= link_to('Log Out', logout_path) %></li>
         <% else %>
-          <li><%= link_to('Sign Up', new_user_path) %></li>
-          <li><%= link_to('Log In', new_session_path)%></li>
+          <li class="nav-link"><%= link_to('Sign Up', new_user_path) %></li>
+          <li class="nav-link"><%= link_to('Log In', new_session_path)%></li>
         <% end %>
       </ul>
-      <h1 align="center"><%= link_to("LET'S", profile_path) %></h1>
-      <h4 align="center">a group decision-making app</h4>
-    </div><!-- page-header -->
-  </div><!-- container -->
+    </div>
+  </div>
+</nav>
+
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">

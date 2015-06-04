@@ -12,4 +12,18 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap.min
  */
+.btn-info {
+  background: #159cf2;
+}
+
+li.nav-link {
+  font-size: 30px;
+  font-family: 'NTR', sans-serif;
+}
+
+p,
+h2 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
