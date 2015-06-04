@@ -5,6 +5,7 @@ class DecisionsController < ApplicationController
 
   def index
     @user = user
+
     @active_user_decisions = active_user_decisions
     @closed_user_decisions = recently_closed_decisions
     # puts "============================= #{@user_decisions.pluck(:context)}"

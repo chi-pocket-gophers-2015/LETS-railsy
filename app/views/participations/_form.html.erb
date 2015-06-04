@@ -4,28 +4,20 @@
     <%= f.text_field :user, :placeholder => "Your friend's email address", :class => "form-control"  %>
   </p>
 
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
+
   <p>
     <%= f.submit value="Add!", :class=> "btn btn-lg btn-info btn-block" %>
   </p>
-
 <% end %>
-
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
 
 <%= link_to("I'm done adding friends!", new_decision_proposal_path(@decision), :class=> "btn btn-lg btn-success btn-block") %>
 
-
-  <% if @participations %>
-    <h4>Added friends:</h4>
-    <ul class="list-group">
-      <%= render @participations %>
-    </ul>
-  <% end %>
-
-<!--
-user.decisions << decision
-
-Participation.create (user:user, decision:decision)
- -->
+<% if @participations %>
+  <h4>Added friends:</h4>
+  <ul class="list-group">
+    <%= render @participations %>
+  </ul>
+<% end %>
