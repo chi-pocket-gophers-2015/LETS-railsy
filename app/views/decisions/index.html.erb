@@ -1,16 +1,19 @@
 <div class="container">
   <h1>Hey, <%= @user.name %>!</h1>
-
-
   <%= link_to "Let's Make a New Decision!", new_decision_path, :class => "btn btn-lg btn-info btn-block" %>
-
-  <div>
-    <h4>Your open decisions:</h4>
+  <hr>
+  <div id="open-decisions">
+    <h3>Open decisions:</h3>
     <% if @user_decisions.any? %>
-      <%= render @user_decisions %>
+      <%= render @active_user_decisions %>
     <% else %>
       <p>You have no open decisions! Consider making one...</p>
     <% end %>
+  </div>
+  <hr>
+  <div id="recently-closed-decisions">
+    <h3>Recently closed decisions:</h3>
+    <%= render @closed_user_decisions%>
   </div>
 
 </div>
