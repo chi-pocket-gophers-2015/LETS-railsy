@@ -4,10 +4,12 @@ class Query < ActiveRecord::Base
 
   validates_presence_of :participation_id#, :status, :respond_by, :responded_at
   # validates_inclusion_of :status, :in => %w(yes no)
+  after_save :auto_approve_check
 
   scope :accepted, -> { where(status: :yes) }
   scope :rejected, -> { where(status: :no)  }
   scope :open,     -> { where(status: :waiting)  }
+
 
   def user
     self.participation.user
@@ -20,6 +22,15 @@ class Query < ActiveRecord::Base
   def decision
     self.proposal.decision
   end
+
+  def auto_approve_check
+    QueryCleanupWorker.perform_at(1.minutes.from_now, self.id)
+  end
+
+  def open?
+    self.status == "waiting"
+  end
+
 end
 
 
