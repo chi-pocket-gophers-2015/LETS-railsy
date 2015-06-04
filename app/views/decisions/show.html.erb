@@ -1,8 +1,8 @@
-<div class="container">
+<div>
 
   <h2>Let's <%= @decision.context %> ... <%= @current_proposal.proposed_idea %>!</h2>
 
-  <% if @decision.is_active? %>
+  <% if @decision.is_active? && @current_query %>
       <h3>Current voter: <%= @current_query.participation.user.name %></h3>
 
 
