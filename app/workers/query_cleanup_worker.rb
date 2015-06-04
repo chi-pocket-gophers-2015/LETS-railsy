@@ -26,8 +26,8 @@ class QueryCleanupWorker
     user = query.participation.user
     decision = query.participation.decision
     if query.open? && query.respond_by < Time.now
-      QueryService.approve(query)
       ProposalMailer.notify_of_expired_time(user, decision).deliver_now
+      QueryService.approve(query)
     end
   end
 
