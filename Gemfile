@@ -11,6 +11,7 @@ gem 'jquery-rails'
 
 gem 'pg'
 
+gem 'rails_12factor', group: :production
 
 gem 'giphy'
 # gem 'rack-cors', require: 'rack/cors'
@@ -19,17 +20,19 @@ gem 'giphy'
 # To use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
 gem 'sidekiq'
 
 # gem 'redis'###################I DON'T KNOW IF I NEED THIS######################
 
 gem 'responders', '~> 2.0'
 
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
@@ -42,8 +45,6 @@ group :development do
   gem 'better_errors'
   gem "binding_of_caller"
   gem "table_print"
-  gem 'dotenv-rails'
-
 end
 
 group :development, :test do
@@ -56,7 +57,3 @@ group :test do
   gem 'simplecov', :require => false
 end
 
-group :production do
-  gem 'rails_12factor'
-  gem 'thin'
-end

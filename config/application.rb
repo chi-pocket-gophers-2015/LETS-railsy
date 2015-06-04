@@ -6,8 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
-
 module LETS
   class Application < Rails::Application
 
@@ -16,8 +14,8 @@ module LETS
     config.action_mailer.smtp_settings = {
       address: "smtp.gmail.com",
       port: 587,
-      user_name: ENV['GROUPGMAIL'],
-      password: ENV['GMAILPWORD'],
+      user_name: 'LETSdecisions@gmail.com',
+      password: 'igeekallweek',
       authentication: :plain,
       enable_starttls_auto: true
     }
