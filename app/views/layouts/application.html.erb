@@ -15,7 +15,7 @@
     <div class="page-header">
       <ul class="nav nav-pills">
         <% if logged_in? %>
-          <li><%= link_to('My Decisions', user_decisions_path(current_user)) %></li>
+          <li><%= link_to('My Decisions', profile_path) %></li>
           <li><%= link_to('Log Out', logout_path) %></li>
         <% else %>
           <li><%= link_to('Sign Up', new_user_path) %></li>
