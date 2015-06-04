@@ -16,9 +16,9 @@ class DecisionsController < ApplicationController
     if @decision.is_active?
       # @participations = @decision.participations
       @current_proposal = @decision.proposals.find_by(status: "open")
-      @current_query = @current_proposal.current_open_query
-      @already_voted = @current_proposal.already_voted
-      if !@current_query.nil?
+      unless @current_proposal.current_open_query.nil?
+        @current_query = @current_proposal.current_open_query
+        @already_voted = @current_proposal.already_voted
         @on_deck = @current_proposal.not_yet_voted - [@current_query.participation]
       else
         @decision.approve!
