@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "profile" => "decisions#index", :as => "profile"
 
     resources :sessions, only: [:new, :create, :destroy]
-    resources :users, only: [:new, :create, :show] do
+    resources :users, only: [:new, :create] do #, :show
       resources :decisions, only: [:index]
     end
 

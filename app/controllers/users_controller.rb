@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to profile_path(@user)
     else
       flash.now[:error] = "Sign Up unsuccessful; please try again."
       render(:new)

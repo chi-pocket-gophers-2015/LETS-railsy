@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
     if @user = User.find_by(email: params[:session][:email])
       @user.authenticate(params[:session][:password_digest])
       session[:user_id] = @user.id
-      redirect_to user_decisions_path(session[:user_id])
+      # redirect_to user_decisions_path(session[:user_id])
+      redirect_to profile_path
     else
       flash.now[:error] = "Log In unsuccessful; please try again."
       render(:new)
