@@ -1,2 +1,2 @@
-web: bundle exec thin start -p $PORT
+web: bundle exec unicorn
 worker: bundle exec sidekiq
