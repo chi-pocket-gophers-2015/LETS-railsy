@@ -1,5 +1,5 @@
 class QueryService
-  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
+  WAIT_TIME = 45#2 * 60 #for converting time from seconds to minutes
 
   def self.create_decision(context)
     Decision.create(context)
@@ -7,18 +7,22 @@ class QueryService
 
   def self.add_user(decision, user)
     user.decisions << decision
+    ProposalMailer.notify_of_invitation(user).deliver_now
   end
 
-  # Start a new decision
+  # Start a new proposal
   def self.create_proposal(decision, current_participation, idea)
-    decision.proposals.open.each {|p| p.reject! }
+    if decision.proposals.length > 0
+      decision.proposals.open.first.update_prior_query
+    end
+    decision.proposals.open.each {|p| p.reject!}
     proposal = propose(current_participation, idea)
     create_query(proposal)
   end
 
   # Update a query with a yes
-  def self.approve(query, current_participation)
-    query.update_attributes(status: :yes)
+  def self.approve(query)#, current_participation)
+    query.update_attributes(status: :yes, responded_at: Time.now)
     if next_participation = query.proposal.next_participation
       create_query(query.proposal, next_participation)
     else
@@ -34,8 +38,13 @@ class QueryService
 
   # Close a decision
   def self.close(query)
+    decision = query.decision
+    users = query.decision.participants
     query.proposal.approve!
     query.decision.approve!
+    users.each do |user|
+      ProposalMailer.notify_of_final_decision(user, decision).deliver_now
+    end
   end
 
   protected
@@ -47,11 +56,9 @@ class QueryService
   end
 
   def self.create_query(proposal, next_participation=nil)
-    # proposal.email_current_voter(proposal.next_participation.user, proposal.decision)
-
-    if proposal.next_participation.nil?
-      puts "heeeyyysysyys"
-    else
+    # if proposal.next_participation.nil?
+    #   puts "heeeyyysysyys"
+    # else
       user = proposal.next_participation.user
       ProposalMailer.notify_of_turn_to_vote(user).deliver_now
       proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: Time.now + WAIT_TIME)

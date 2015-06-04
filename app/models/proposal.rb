@@ -26,7 +26,7 @@ class Proposal < ActiveRecord::Base
   end
 
   def already_voted
-    self.query_participations.where('queries.status IS NOT NULL')
+    self.query_participations.where("status NOT IN (?)", ['waiting'])#where('queries.status IS NOT NULL')# IN (?),['yes','no']
   end
 
   def current_open_query
@@ -39,6 +39,10 @@ class Proposal < ActiveRecord::Base
 
   def reject!
     self.update_attributes(status: :rejected)
+  end
+
+  def update_prior_query
+    self.queries.open.first.update_attributes(status: "no", responded_at: Time.now)
   end
 
   def email_current_voter(user, decision)

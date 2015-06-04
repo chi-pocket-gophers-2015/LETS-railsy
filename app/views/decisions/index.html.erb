@@ -1,16 +1,19 @@
 <div>
   <h1>Hey, <%= @user.name %>!</h1>
 
-  <button class="btn btn-lg btn-default btn-block"><%= link_to(" Let's Make a New Decision!", new_decision_path) %></button>
+
+  <%= link_to "Let's Make a New Decision!", new_decision_path, :class => "btn btn-lg btn-info btn-block" %>
 
   <div>
-    <h4>Take a look at your open decisions:</h4>
+    <h4>Your open decisions:</h4>
     <% if @user_decisions.any? %>
       <%= render @user_decisions %>
     <% else %>
       <p>You have no open decisions! Consider making one...</p>
     <% end %>
   </div>
+
 </div>
 
 
+<!-- THIS IS ALMOST SAME AS USERS/SHOW, LOOK INTO AND REMOVE ONE, SOMETIMES ROUTES TO WRONG ONE -->

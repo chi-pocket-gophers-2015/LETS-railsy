@@ -7,7 +7,8 @@ class ProposalsController < ApplicationController
 
   def create
     if params[:proposal][:proposed_idea] != ""
-      QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+      new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+
       redirect_to decision_path(@decision)
     else
       flash.now[:error] = "Your proposal could not be created; please try again. (Did you add friends?)"
