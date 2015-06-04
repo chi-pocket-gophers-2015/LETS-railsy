@@ -39,4 +39,5 @@ build/
 /coverage/
 .DS_Store
 
-.rdb
+*.rdb
+public/assets/
