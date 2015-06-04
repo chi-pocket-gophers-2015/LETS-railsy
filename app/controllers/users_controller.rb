@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts user_params
-    @user = User.new(user_params)
+    @user = User.new(name: user_params[:name], email: user_params[:email].downcase, password: user_params[:password])
+    puts "================================= #{@user.email}"
 
     if @user.save
       session[:user_id] = @user.id
