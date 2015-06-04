@@ -6,9 +6,6 @@ class DecisionsController < ApplicationController
   def index
     @user = user
     @user_decisions = user_decisions
-    # puts "============================= #{@user_decisions.pluck(:context)}"
-
-    # @participations
   end
 
   def show
