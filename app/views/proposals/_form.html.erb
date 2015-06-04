@@ -1,10 +1,9 @@
 <%= form_for :proposal, url: "/decisions/#{@decision.id}/proposals", method: 'post' do |f| %>
 
-  <h3>Let's <%= @decision.context %>.</h3>
+  <h2>Let's "<%= @decision.context %>."</h2>
 
-  <p> What/where do you propose?
-    <%= f.text_field :proposed_idea, :placeholder => "e.g. 'Domino's", :class => "form-control"  %>
-  </p>
+   <h4>What/where do you propose?</h4>
+    <p><%= f.text_field :proposed_idea, :placeholder => "e.g. 'Domino's", :class => "form-control"  %></p>
 
   <p>
     <%= f.submit value="Create New Proposal", :class=> "btn btn-lg btn-info btn-block" %>
