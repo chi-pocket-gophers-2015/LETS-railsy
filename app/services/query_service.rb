@@ -62,6 +62,6 @@ class QueryService
       user = proposal.next_participation.user
       ProposalMailer.notify_of_turn_to_vote(user).deliver_now
       proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: Time.now + WAIT_TIME)
-    end
+
   end
 end
