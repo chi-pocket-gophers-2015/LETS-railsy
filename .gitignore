@@ -38,3 +38,5 @@ build/
 /log/*
 /coverage/
 .DS_Store
+
+.rdb
