@@ -11,7 +11,7 @@ gem 'jquery-rails'
 
 gem 'pg'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 gem 'giphy'
 # gem 'rack-cors', require: 'rack/cors'
