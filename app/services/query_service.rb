@@ -1,5 +1,5 @@
 class QueryService
-  WAIT_TIME = 1 * 60 #for converting time from seconds to minutes
+  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
 
   def self.create_decision(context)
     Decision.create(context)
@@ -58,7 +58,8 @@ class QueryService
   def self.create_query(proposal, next_participation=nil)
     unless proposal.next_participation.nil?
       user = proposal.next_participation.user
-      ProposalMailer.notify_of_turn_to_vote(user).deliver_now
+      # proposal = proposal
+      ProposalMailer.notify_of_turn_to_vote(user, proposal).deliver_now
       proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: Time.now + WAIT_TIME)
     end
   end

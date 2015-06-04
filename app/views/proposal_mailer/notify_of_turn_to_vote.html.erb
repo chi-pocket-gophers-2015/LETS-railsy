@@ -1,6 +1,10 @@
 Dear <%= @user.name %>,<br />
 <br />
-You're included in a LET'S decision with your friends, and it's your turn to vote.
+You're included in a LET'S decision with your friends, and it's your turn to vote.<br />
+<br />
+IMPORTANT: You must vote by <%= @query.respond_by %>!<br />
+
 <h3><%= link_to "Vote Here Now!", root_url %></h3>
 Thanks,<br />
 Your friends at LET'S
+
