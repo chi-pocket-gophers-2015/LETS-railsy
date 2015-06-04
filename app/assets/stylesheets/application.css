@@ -27,3 +27,10 @@ p,
 h2 {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+#active-decision-header,
+#current-voter {
+  text-align: center;
+}
+
+
