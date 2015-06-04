@@ -11,7 +11,6 @@ gem 'jquery-rails'
 
 gem 'pg'
 
-gem 'rails_12factor', group: :production
 
 gem 'giphy'
 # gem 'rack-cors', require: 'rack/cors'
@@ -32,7 +31,7 @@ gem 'responders', '~> 2.0'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
@@ -56,5 +55,10 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'thin'
 end
 
