@@ -11,6 +11,7 @@ gem 'jquery-rails'
 
 gem 'pg'
 
+
 gem 'giphy'
 # gem 'rack-cors', require: 'rack/cors'
 # gem "active_model_serializers", github: "rails-api/active_model_serializers"
@@ -41,6 +42,8 @@ group :development do
   gem 'better_errors'
   gem "binding_of_caller"
   gem "table_print"
+  gem 'dotenv-rails'
+
 end
 
 group :development, :test do
