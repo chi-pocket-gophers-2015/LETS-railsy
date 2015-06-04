@@ -22,7 +22,13 @@
           <li><%= link_to('Log In', new_session_path)%></li>
         <% end %>
       </ul>
-      <h1 align="center"><%= link_to("LET'S", profile_path) %></h1>
+      <h1 align="center">
+        <% if logged_in? %>
+          <%= link_to("LET'S", profile_path) %>
+        <% else %>
+          <%= link_to("LET'S", new_user_path) %>
+        <% end %>
+      </h1>
       <h4 align="center">a group decision-making app</h4>
     </div><!-- page-header -->
   </div><!-- container -->

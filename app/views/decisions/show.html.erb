@@ -1,4 +1,4 @@
-<div>
+<div class="container">
 
   <h3>Let's <%= @decision.context %> ... <%= @current_proposal.proposed_idea %>!</h3>
 
@@ -10,7 +10,7 @@
       </div>
     </div> -->
     <ul class="list-group list-unstyled">
-      <li class="list-group-item list-group-item-default"><h3>Current voter: <%= @current_query.participation.user.name %></h3></li>
+      <li class="list-group-item current-voter"><h3><%= @current_query.participation.user.name %>, current voter!</h3></li>
     <!-- </ul> -->
 
     <% if @current_query.participation.user == current_user %>
@@ -18,7 +18,7 @@
         <li class="list-group-item list-group-item-success"><%= link_to "That Sounds Good!", response_path(status: 'yes'), method: :put, :class => "btn btn-success btn-lg btn-block" %></li>
         <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
         <li class="list-group-item list-group-item-danger"><%= link_to "Something Else...", response_path(status: 'no'), method: :put, :class => "btn btn-danger btn-lg btn-block" %></li>
-       <!-- </ul> -->
+       </ul>
     <% end %>
 
     <% if @on_deck.length > 0 %>
@@ -37,4 +37,6 @@
   <% else %>
     <p>Congratulations! You decided on <%= @current_proposal.proposed_idea %>!</p>
   <% end %>
+
+  <%= link_to "Back to your decisions", profile_path, :class=> "btn btn-info" %>
 </div>
