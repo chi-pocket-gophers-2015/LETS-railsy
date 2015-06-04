@@ -15,10 +15,11 @@
 
     <% if @current_query.participation.user == current_user %>
       <!-- <ul class="list-group list-unstyled"> -->
-        <li class="list-group-item list-group-item-success"><%= link_to "That Sounds Good!", response_path(status: 'yes'), method: :put, :class => "btn btn-success btn-lg btn-block" %></li>
+        <li class="list-group-item list-group-item-success"><%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put, :class => "btn btn-success btn-lg btn-block" %></li>
         <!-- , {:controller => 'query', :action => "yes" }, { :class => button_yes } -->
-        <li class="list-group-item list-group-item-danger"><%= link_to "Something Else...", response_path(status: 'no'), method: :put, :class => "btn btn-danger btn-lg btn-block" %></li>
-       </ul>
+
+        <li class="list-group-item list-group-item-danger"><%= button_to "Something Else...", response_path(status: 'no'), method: :put, :class => "btn btn-danger btn-lg btn-block" %></li>
+       <!-- </ul> -->
     <% end %>
 
     <% if @on_deck.length > 0 %>

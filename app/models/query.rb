@@ -24,7 +24,7 @@ class Query < ActiveRecord::Base
   end
 
   def auto_approve_check
-    QueryCleanupWorker.perform_at(1.minutes.from_now, self.id)
+    QueryCleanupWorker.perform_at(15.minutes.from_now, self.id)
   end
 
   def open?
