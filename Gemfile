@@ -42,13 +42,13 @@ group :development do
   gem 'better_errors'
   gem "binding_of_caller"
   gem "table_print"
-  gem 'dotenv-rails'
 
 end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
+  gem 'dotenv-rails'
 end
 
 group :test do
