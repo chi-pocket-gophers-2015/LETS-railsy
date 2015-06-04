@@ -5,4 +5,7 @@ class Participation < ActiveRecord::Base
   has_many   :queries
 
   validates_presence_of :user, :decision
+
+  validates_uniqueness_of :user, scope: :decision, message: "You already added that friend!"
+
 end

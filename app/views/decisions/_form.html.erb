@@ -1,7 +1,7 @@
 <%= form_for :decision, url: '/decisions', method: 'post' do |f| %>
 
   <p>
-    <%= f.text_field :context %>
+    <%= f.text_field :context, :placeholder => "e.g. 'Go to dinner'", :class => "form-control"  %>
   </p>
 
   <p>
