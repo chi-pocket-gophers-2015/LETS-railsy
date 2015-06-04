@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>LET'S</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -7,36 +8,30 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
   <div class="container">
     <div class="page-header">
       <ul class="nav nav-pills pull-right">
         <% if logged_in? %>
-        <li>
-          <%= link_to('My Decisions', user_decisions_path(current_user)) %>
-        </li>
-        <li>
-          <%= link_to('Log Out', logout_path) %>
-        </li>
+          <li><%= link_to('My Decisions', user_decisions_path(current_user)) %></li>
+          <li><%= link_to('Log Out', logout_path) %></li>
         <% else %>
-        <li>
-          <%= link_to('Sign Up', new_user_path) %>
-        </li>
-        <li>
-          <%= link_to('Log In', new_session_path)%>
-        </li>
+          <li><%= link_to('Sign Up', new_user_path) %></li>
+          <li><%= link_to('Log In', new_session_path)%></li>
         <% end %>
       </ul>
-      <!-- change home link to an index page -->
-      <h1><%= link_to("LET'S", root_path) %></h1>
+      <h1><%= link_to("LET'S", profile_path) %></h1>
       <h4>a group decision-making app</h4>
-    </div>
-  </div>
+    </div><!-- page-header -->
+  </div><!-- container -->
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%= yield %>
-    </div>
-  </div>
+    </div><!-- yield -->
+  </div><!-- row -->
+
 </body>
+
 </html>
