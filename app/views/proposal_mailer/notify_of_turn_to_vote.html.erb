@@ -2,6 +2,9 @@ Dear <%= @user.name %>,<br />
 <br />
 You're included in a LET'S decision with your friends, and it's your turn to vote.<br />
 <br />
+You are deciding on: <em><%= @proposal.decision.context %></em><br/>
+Current proposal: <em><%= @proposal.proposed_idea %></em><br/>
+<br />
 IMPORTANT: You must vote by <%= @respond_by.strftime("%l:%M%P") %> today!<br />
 
 <h3><%= link_to "Vote Here Now!", root_url %></h3>
