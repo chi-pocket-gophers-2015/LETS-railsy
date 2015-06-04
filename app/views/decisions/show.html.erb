@@ -1,6 +1,9 @@
 <div class="container">
 
-  <h3>Let's <%= @decision.context %> ... <%= @current_proposal.proposed_idea %>!</h3>
+  <div id="active-decision-header">
+    <h2>Making a decision about: <%= @decision.context %></h2>
+    <h2>Currently voting on: <%= @current_proposal.proposed_idea %>!</h2>
+  </div>
 
   <% if @decision.is_active? && @current_query %>
 
@@ -10,7 +13,13 @@
       </div>
     </div> -->
     <ul class="list-group list-unstyled">
-      <li class="list-group-item current-voter"><h3><%= @current_query.participation.user.name %>, current voter!</h3></li>
+      <li class="list-group-item current-voter">
+        <% if @current_query.participation.user.name == current_user.name %>
+          <h3 id="current-voter">You must vote by <%= @current_query.respond_by.strftime('%l:%M%P')%></h3>
+        <% else %>
+          <h3 id="current-voter"><%= @current_query.participation.user.name %> must vote by <%= @current_query.respond_by.strftime('%l:%M%P')%>!</h3>
+        <% end %>
+      </li>
     <!-- </ul> -->
 
     <% if @current_query.participation.user == current_user %>
