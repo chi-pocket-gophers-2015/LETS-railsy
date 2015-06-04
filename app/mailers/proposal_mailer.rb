@@ -1,11 +1,11 @@
 class ProposalMailer < ApplicationMailer
 
   # In QueryService::create_query
-  def notify_of_turn_to_vote(user, proposal)
+  def notify_of_turn_to_vote(user, proposal, respond_by)
     @user = user
     @proposal = proposal
-    @query = @proposal.queries.open.first
-    mail(to: @user.email, subject: "LET'S - It's Your Turn to Vote!")
+    @respond_by = respond_by
+    mail(to: @user.email, subject: "LET'S - It's your turn, vote by #{@respond_by.strftime('%l:%M%P')}!")
   end
 
   # In QueryService::add_user

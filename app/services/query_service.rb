@@ -59,8 +59,11 @@ class QueryService
     unless proposal.next_participation.nil?
       user = proposal.next_participation.user
       # proposal = proposal
-      ProposalMailer.notify_of_turn_to_vote(user, proposal).deliver_now
-      proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: Time.now + WAIT_TIME)
+      respond_by = Time.now + WAIT_TIME
+
+      proposal.queries.create(participation: next_participation || proposal.next_participation, respond_by: respond_by)
+
+      ProposalMailer.notify_of_turn_to_vote(user, proposal, respond_by).deliver_now
     end
   end
 end
