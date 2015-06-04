@@ -28,6 +28,8 @@ h2 {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+
+#congratulations-msg,
 #active-decision-header,
 #current-voter {
   text-align: center;
@@ -37,3 +39,6 @@ li.current-voter {
   background-color: #FFFB85;
 }
 
+.back-to-decisions {
+
+}

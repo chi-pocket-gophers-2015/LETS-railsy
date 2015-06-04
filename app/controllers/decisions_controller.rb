@@ -27,6 +27,7 @@ class DecisionsController < ApplicationController
       end
       # @current_voter = @decision_participants[0]
     else
+      @last_proposal = @decision.proposals.order(:created_at).last
       @current_proposal = @decision.proposals.approved.first
     end
   end
