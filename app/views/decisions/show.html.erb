@@ -28,14 +28,14 @@
 
     <% if @on_deck.length > 0 %>
       <ul class="list-group list-unstyled">
-        <li class="list-group-item list-group-item-default"><h4>On deck:</h4></li>
+        <li class="list-group-item list-group-item-default"><h4 class="active-participants">On deck:</h4></li>
         <li class="list-group-item list-group-item-info"><%= render partial: 'participant', collection: @on_deck %></li>
       <!-- </ul> -->
     <% end %>
 
     <% if @already_voted.length > 0 %>
       <!-- <ul class="list-group list-unstyled"> -->
-        <li class="list-group-item list-group-item-default"><h4>Already voted:</h4></li>
+        <li class="list-group-item list-group-item-default"><h4 class="active-participants">Already voted:</h4></li>
         <li class="list-group-item list-group-item-success"><%= render partial: 'participant', collection: @already_voted %></li>
       </ul>
     <% end %>
