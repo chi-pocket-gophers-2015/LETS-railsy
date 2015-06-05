@@ -29,7 +29,3 @@ class ProposalMailer < ApplicationMailer
   end
 
 end
-
-
-# proposal where staus is waiting
-# @current_proposal = @decision.proposals.find_by(status: "open")

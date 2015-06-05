@@ -23,8 +23,10 @@ class QueryCleanupWorker
 
   def approve_expired_query(query_id)
     query = Query.find_by(id: query_id)
-
+    user = query.participation.user
+    decision = query.participation.decision
     if query.open? && query.respond_by < Time.now
+      ProposalMailer.notify_of_expired_time(user, decision).deliver_now
       QueryService.approve(query)
     end
   end

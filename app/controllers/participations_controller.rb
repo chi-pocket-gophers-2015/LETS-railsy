@@ -6,11 +6,7 @@ class ParticipationsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:participation][:user])
-    # participation = Participation.find_by(user_id: user.id)
-
-    # puts participation.validate
-
+    user = User.find_by_email(params[:participation][:user].downcase)
     @decision = Decision.find(params[:decision_id])
 
     if user
@@ -25,5 +21,6 @@ class ParticipationsController < ApplicationController
       flash[:error] = "User not found! Please try again."
       redirect_to new_decision_participation_path(@decision)
     end
+
   end
 end
