@@ -18,16 +18,16 @@
   background: #159cf2;
 }
 
-li.nav-link {
+
+#nav-link, a {
   font-size: 30px;
   font-family: 'NTR', sans-serif;
 }
 
-p,
-h2 {
+
+p, h1, h2, h3, h4, h5 {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 
 #congratulations-msg,
 #active-decision-header,
