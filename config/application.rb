@@ -21,6 +21,8 @@ module LETS
       enable_starttls_auto: true
     }
 
+    config.autoload_paths << Rails.root.join('lib')
+
     # Giphy::Configuration.configure do |config|
     #   config.version = THE_API_VERSION
     #   config.api_key = "dc6zaTOxFJmzC"
