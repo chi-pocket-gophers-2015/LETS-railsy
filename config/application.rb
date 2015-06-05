@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module LETS
   class Application < Rails::Application
 
+    config.time_zone = "Central Time (US & Canada)"
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
@@ -19,6 +20,8 @@ module LETS
       authentication: :plain,
       enable_starttls_auto: true
     }
+
+    config.autoload_paths << Rails.root.join('lib')
 
     # Giphy::Configuration.configure do |config|
     #   config.version = THE_API_VERSION

@@ -1,6 +1,8 @@
-<div class="container">
+<div class="container <%= "decision" if @decision.is_active? %> ">
 
-
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
 
   <% if @decision.is_active? && @current_query %>
     <div id="active-decision-header">
@@ -17,6 +19,8 @@
       </li>
     <!-- </ul> -->
 
+
+
     <% if @current_query.participation.user == current_user %>
       <!-- <ul class="list-group list-unstyled"> -->
         <li class="list-group-item list-group-item-success"><%= button_to "That Sounds Good!", response_path(status: 'yes'), method: :put, :class => "btn btn-success btn-lg btn-block" %></li>
@@ -28,14 +32,14 @@
 
     <% if @on_deck.length > 0 %>
       <ul class="list-group list-unstyled">
-        <li class="list-group-item list-group-item-default"><h4>On deck:</h4></li>
+        <li class="list-group-item list-group-item-default"><h4 class="active-participants">On deck:</h4></li>
         <li class="list-group-item list-group-item-info"><%= render partial: 'participant', collection: @on_deck %></li>
       <!-- </ul> -->
     <% end %>
 
     <% if @already_voted.length > 0 %>
       <!-- <ul class="list-group list-unstyled"> -->
-        <li class="list-group-item list-group-item-default"><h4>Already voted:</h4></li>
+        <li class="list-group-item list-group-item-default"><h4 class="active-participants">Already voted:</h4></li>
         <li class="list-group-item list-group-item-success"><%= render partial: 'participant', collection: @already_voted %></li>
       </ul>
     <% end %>

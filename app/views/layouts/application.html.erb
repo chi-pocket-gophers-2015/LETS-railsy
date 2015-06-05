@@ -4,6 +4,7 @@
 <head>
   <title>LET'S</title>
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+  <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=NTR' rel='stylesheet' type='text/css'>
@@ -12,7 +13,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <% if logged_in? %>

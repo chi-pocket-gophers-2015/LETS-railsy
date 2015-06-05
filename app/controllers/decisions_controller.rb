@@ -48,17 +48,22 @@ class DecisionsController < ApplicationController
     end
   end
 
+  # GET /decisions/:id/something_changed
+  def something_changed
+    render json: CacheChanged.read(params[:id], session[:user_id])
+    CacheChanged.write(params[:id], session[:user_id], false)
+  end
 
   private
 
   def active_user_decisions
     @user = user
-    @user_decisions = @user.decisions.where(is_active: true).order(created_at: :desc)
+    @user_decisions = @user.decisions.where(is_active: true).order(created_at: :asc)
   end
 
   def recently_closed_decisions
     @user = user
-    @recently_closed_decisions = user.decisions.where(is_active: false).order(updated_at: :asc).limit(5)
+    @recently_closed_decisions = user.decisions.where(is_active: false).order(updated_at: :desc).limit(5)
   end
 
   def user
