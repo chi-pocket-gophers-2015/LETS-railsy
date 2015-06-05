@@ -9,7 +9,9 @@
   <div id="open-decisions">
     <h3>Open decisions:</h3>
     <% if @active_user_decisions.any? %>
-      <%= render @active_user_decisions %>
+      <ul class="list-group">
+        <%= render @active_user_decisions %>
+      </ul>
     <% else %>
       <p>You have no open decisions!</p>
     <% end %>
@@ -20,7 +22,9 @@
   <div id="recently-closed-decisions">
     <h3>Recently closed decisions:</h3>
     <% if @closed_user_decisions.any? %>
-      <%= render @closed_user_decisions %>
+      <ul class="list-group" >
+        <%= render @closed_user_decisions %>
+      </ul>
     <% else %>
       <p>You have no recent decisions!</p>
     <% end %>
