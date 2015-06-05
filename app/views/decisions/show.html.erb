@@ -1,6 +1,8 @@
 <div class="container <%= "decision" if @decision.is_active? %> ">
 
-
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
 
   <% if @decision.is_active? && @current_query %>
     <div id="active-decision-header">
@@ -16,6 +18,8 @@
         <% end %>
       </li>
     <!-- </ul> -->
+
+
 
     <% if @current_query.participation.user == current_user %>
       <!-- <ul class="list-group list-unstyled"> -->

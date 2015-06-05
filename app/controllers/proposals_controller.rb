@@ -5,27 +5,41 @@ class ProposalsController < ApplicationController
   def new
   end
 
+  # def create
+  #   if params[:proposal][:proposed_idea] != "" #&& Decision.find(params[:decision_id]).proposals.length == 0
+  #     new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+
+  #     redirect_to decision_path(@decision)
+
+  #   # elsif params[:proposal][:proposed_idea] != "" && Decision.find(params[:decision_id]).proposals.open.first.queries.find_by_participation(Participation.find_by(user_id: current_user.id, decision_id: params[:decision_id]).id).open?
+  #   #   new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+
+  #   #   redirect_to decision_path(@decision)
+  #   else
+  #     flash.now[:error] = "Proposal must not be blank; please try again."
+  #     render(:new)
+  #   end
+  # end
+
+##############################################
+
   def create
-    if params[:proposal][:proposed_idea] != "" #&& Decision.find(params[:decision_id]).proposals.length == 0
-      if
-
-      else
-
-      end
-
-      new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
-
-      redirect_to decision_path(@decision)
-
-    # elsif params[:proposal][:proposed_idea] != "" && Decision.find(params[:decision_id]).proposals.open.first.queries.find_by_participation(Participation.find_by(user_id: current_user.id, decision_id: params[:decision_id]).id).open?
-    #   new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
-
-    #   redirect_to decision_path(@decision)
-    else
+    if params[:proposal][:proposed_idea] == ""
       flash.now[:error] = "Proposal must not be blank; please try again."
       render(:new)
+    elsif @decision.proposals.length == 0
+      new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+      redirect_to decision_path(@decision)
+    elsif @current_participation.queries.last.open?
+      new_proposal = QueryService.create_proposal(@decision, @current_participation, params[:proposal][:proposed_idea])
+      redirect_to decision_path(@decision)
+    else
+      flash[:error] = "It is not your turn to propose an idea!"
+      redirect_to decision_path(@decision)
     end
+
   end
+
 
 
   protected
