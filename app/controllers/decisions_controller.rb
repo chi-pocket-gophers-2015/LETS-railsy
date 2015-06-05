@@ -58,7 +58,7 @@ class DecisionsController < ApplicationController
 
   def active_user_decisions
     @user = user
-    @user_decisions = @user.decisions.where(is_active: true).order(created_at: :asc)
+    @user_decisions = @user.decisions.where(is_active: true).order(created_at: :desc)
   end
 
   def recently_closed_decisions
