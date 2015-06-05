@@ -24,7 +24,7 @@ class Query < ActiveRecord::Base
   end
 
   def auto_approve_check
-    QueryCleanupWorker.perform_at((WAIT_TIME/60).minutes.from_now, self.id)
+    QueryCleanupWorker.perform_at((QueryService::WAIT_TIME/60).minutes.from_now, self.id)
   end
 
   def open?
@@ -33,11 +33,3 @@ class Query < ActiveRecord::Base
 
 end
 
-
-# scope :active, -> {
-#   where(created_at: (Time.now - 1.day)..Time.now, gold_member: true, registered: true)
-# }
-
-
-
-# where status is in ["no_waiting "] AND is NULL
