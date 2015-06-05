@@ -1,5 +1,5 @@
 class QueryService
-  WAIT_TIME = 15 * 60 #for converting time from seconds to minutes
+  WAIT_TIME = 1 * 60 #for converting time from seconds to minutes
 
   def self.create_decision(context)
     Decision.create(context)
@@ -18,6 +18,7 @@ class QueryService
     decision.proposals.open.each {|p| p.reject!}
     proposal = propose(current_participation, idea)
     create_query(proposal)
+    set_changed_on(decision)
   end
 
   # Update a query with a yes
@@ -29,6 +30,7 @@ class QueryService
       close(query)
     end
     query
+    set_changed_on(query.proposal.decision)
   end
 
   # Update a query with a no
@@ -45,9 +47,16 @@ class QueryService
     users.each do |user|
       ProposalMailer.notify_of_final_decision(user, decision).deliver_now
     end
+    set_changed_on(decision)
   end
 
   protected
+
+  def self.set_changed_on(decision, user=nil)
+    decision.participations.each do |participation|
+      ::CacheChanged.write(decision.id, participation.user_id, true)
+    end
+  end
 
   def self.propose(current_participation, idea)
     proposal = current_participation.proposals.create(proposed_idea: idea)
