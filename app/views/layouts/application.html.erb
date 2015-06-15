@@ -16,7 +16,7 @@
 
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <% if logged_in? %>
         <%= link_to(image_tag("lets-sm.png", size: "200x80"), profile_path) %>
@@ -39,11 +39,11 @@
 </nav>
 
 
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+ <!--  <div class="row">
+    <div class="col-md-6 col-md-offset-3"> -->
       <%= yield %>
-    </div><!-- yield -->
-  </div><!-- row -->
+    <!-- </div> -->
+  <!-- </div> -->
 
 </body>
 
